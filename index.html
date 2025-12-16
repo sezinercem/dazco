@@ -570,7 +570,7 @@
       <p class="contact-desc">Ready to start your project or have a question? Fill out the form and we'll get back to you soon.</p>
     </div>
     <div id="formMessage"></div>
-    <form class="contact-form" id="contactForm">
+    <form class="contact-form" id="contactForm" action="https://submit-form.com/5szsfymrx" method="POST">
       <div class="contact-row">
         <input type="text" name="name" id="name" placeholder="Your Name" required>
         <input type="email" name="email" id="email" placeholder="Your Email" required>
@@ -646,9 +646,8 @@
       formMessage.innerHTML = '';
 
       try {
-        // Simulate form submission (replace with actual backend endpoint)
-        // For a real implementation, you would send to a backend or service like Formspree
-        await simulateFormSubmission({ name, email, message });
+        // Submit form to Formspark
+        await submitFormToFormspark({ name, email, message });
 
         // Show success message
         showMessage('Thank you! Your message has been sent successfully. We\'ll get back to you soon.', 'success');
@@ -675,28 +674,13 @@
       return emailRegex.test(email);
     }
 
-    async function simulateFormSubmission(data) {
-      // This simulates an API call - replace with actual backend submission
-      // For production, use services like:
-      // - Formspree: https://formspree.io/
-      // - EmailJS: https://www.emailjs.com/
-      // - Your own backend API
-
-      console.log('Form data:', data);
-
-      // Simulate network delay
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({ success: true });
-        }, 1500);
-      });
-
-      // Example with Formspree (uncomment and replace YOUR_FORM_ID):
-      /*
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+    async function submitFormToFormspark(data) {
+      // Submit to Formspark
+      const response = await fetch('https://submit-form.com/5szsfymrx', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify(data)
       });
@@ -706,7 +690,6 @@
       }
 
       return await response.json();
-      */
     }
 
     // Smooth scroll for all anchor links
